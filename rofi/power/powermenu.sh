@@ -1,6 +1,6 @@
 #! /bin/sh
 
-chosen=$(printf "⏻ Shutdown\n Restart\n󰍃 LogOut\n Lock" | rofi -location 3 -xoffset 845 -yoffset -400 -dmenu -i -theme-str '@import "power.rasi"')
+chosen=$(printf "⏻ Shutdown\n Restart\n󰍃 LogOut\n Lock" | rofi -dmenu -i -theme-str '@import "power.rasi"')
 
 
 case "$chosen" in

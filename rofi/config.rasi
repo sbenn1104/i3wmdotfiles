@@ -1,6 +1,6 @@
 configuration {
 	display-drun: "Applications";
-	drun-display-format: "{name}";
+	drun-display-format: " {name}";
 	font: "JetBrainsMono Nerd Font Medium 14";
 	show-icons: true;
 	icon-theme: "Papirus-Dark";

@@ -8,7 +8,7 @@ set $mod1 Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:JetBrainsMono Nerd Font Regular 8
+font pango:JetBrainsMono Nerd Font Regular 12
 
 
 # Start XDG autostart .desktop files using dex. See also
@@ -27,15 +27,9 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 
 
-## Screenshots
-bindsym Print exec --no-startup-id maim "/home/$USER/Pictures/$(date)"
-bindsym $mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/$(date)"
-bindsym $mod1+p exec --no-startup-id maim --select "/home/$USER/Pictures/$(date)"
-
 ## Clipboard Screenshots
-bindsym Ctrl+Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
-bindsym Ctrl+$mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
-bindsym Ctrl+Shift+p exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
+bindsym Ctrl+Shift+p exec flameshot gui --clipboard
+bindsym Ctrl+p exec flameshot gui --path $HOME/Screenshots/
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -43,6 +37,9 @@ bindsym XF86AudioMute exec /home/stebens/.local/bin/volume mute
 bindsym XF86AudioLowerVolume exec /home/stebens/.local/bin/volume down
 bindsym XF86AudioRaiseVolume exec /home/stebens/.local/bin/volume up
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+bindsym XF86MonBrightnessDown exec /home/stebens/.local/bin/brightness down
+bindsym XF86MonBrightnessUp exec /home/stebens/.local/bin/brightness up
+
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -58,7 +55,7 @@ bindsym $mod1+Return exec kitty
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id rofi -show drun
+bindsym $mod1+space exec --no-startup-id rofi -show drun
 bindsym $mod+p exec --no-startup-id $HOME/.config/rofi/power/powermenu.sh
 bindsym $mod+x exec --no-startup-id rofi -show run
 # change focus
@@ -110,13 +107,13 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
-bindsym $mod+b exec com.brave.Browser
+bindsym $mod+b exec firefox
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1:  "
+set $ws1 "1:  "
 set $ws2 "2:  "
-set $ws3 "3: 󰒱 "
+set $ws3 "3: 󰏆 "
 set $ws4 "4: 󰨞 "
 set $ws5 "5:  "
 set $ws6 "6: 󰻨 "
@@ -138,25 +135,20 @@ bindsym $mod+9 workspace number $ws9
 bindsym $mod+0 workspace number $ws10
 
 # Assigning workspaces
-assign [class="Brave-browser"] $ws1
+assign [class="firefox"] $ws1
 assign [class="Alacritty"] $ws2
 assign [class="code"] $ws4
 assign [class="Thunar"] $ws5
-assign [class="outlook-for-linux"] $ws6
+assign [class="libreoffice-writer"] $ws3
 # Floating Window
-for_window [class="Gnome-calendar" instance="gnome-calendar" title="Calendar"] floating enable 
+for_window [class="Gnome-calendar" instance="gnome-calendar" title="Calendar"] floating enable
 for_window [class="Pavucontrol"] floating enable
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
 
-# Make the currently focused window a scratchpad
-bindsym $mod+Shift+minus move scratchpad
-
-# Show the first scratchpad window
-bindsym $mod+minus scratchpad show
-
-bindsym $mod1+s [class="kitty"] scratchpad show; move position center
-exec_always --no-startup-id pgrep -f "^kitty --class ttrm,ttrm" || kitty --class ttrm,ttrm
+for_window [class="kitty,kitty"] move scratchpad
+bindsym $mod1+s [class="kitty,kitty"] scratchpad show; move position center
+exec_always kitty --class kitty,kitty
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1
@@ -202,24 +194,22 @@ bindsym $mod1+r mode "resize"
 # finds out, if available)
 bar {
 	status_command py3status --config  $HOME/.config/i3/i3status_py3.conf
-        #tray_output none
-	i3bar_command i3bar --transparency
-        font pango:JetBrainsMono Nerd Font Regular 16
+        font pango:JetBrainsMono Nerd Font Regular 12
         separator_symbol " "
         position top
 	strip_workspace_numbers no
         tray_padding 0
 	colors {
-            #separator  #1f222d
-            background #4c566a00
+            separator  #1f222d
+            background #2e3440
             statusline #eff0f1
 
-            #                   border     background     text
-            focused_workspace   #4c566a00  #eceff400      #5e81ac
-            active_workspace    #4c566a00  #4c566a00      #04a5e5
-            inactive_workspace  #4c566a00  #8fbcbb00      #acb0be
-            urgent_workspace    #4c566a00  #1f222d00      #ee829f
-            binding_mode        #4c566a00  #81a1c100      #2e3440
+            #                   border   background     text
+            focused_workspace   #81a1c1  #4c566a      #eceff4
+            active_workspace    #4c566a  #4c566a      #04a5e5
+            inactive_workspace  #4c566a  #2e3440      #eff0f1
+            urgent_workspace    #4c566a  #1f222d      #ee829f
+            binding_mode        #4c566a  #81a1c1      #2e3440
     }	
 }
 
@@ -235,11 +225,11 @@ bar {
 
 # Startup Programs
 exec_always picom --config $HOME/.config/picom/picom.conf &
-exec_always /usr/bin/nitrogen --restore &
+exec flameshot &
 exec_always /usr/bin/lxpolkit &
 exec blueman-applet &
 exec_always dunst -c $HOME/.config/dunst/dunstrc &
-
+exec_always --no-startup-id feh --randomize --bg-fill $HOME/wallpapers/
 
 
 for_window [class="gnome-calendar"] floating enabled
@@ -253,5 +243,4 @@ for_window [class="Blueman-manager"] position center
 
 #Gaps
 gaps inner 5px
-gaps outer 5px
-
+gaps outer 2px
