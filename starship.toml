@@ -16,6 +16,7 @@ $haskell\
 $java\
 $julia\
 $nim\
+$python\
 $rust\
 [](fg:#d8dee9 bg:#8fbcbb)\
 $docker_context\
