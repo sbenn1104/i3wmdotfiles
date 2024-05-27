@@ -114,6 +114,7 @@ style = "bg:#86BBD8"
 format = '[ $symbol ($version) ]($style)'
 
 [python]
+symbol = ""
 style = "bg:#3B4252"
 format = '[(\($virtualenv\) )]($style)'
 
