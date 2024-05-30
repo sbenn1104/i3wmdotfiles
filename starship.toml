@@ -105,9 +105,8 @@ style = "bg:#86BBD8"
 format = '[ $symbol ($version) ]($style)'
 
 [python]
-symbol = ""
 style = "bg:#5e81ac"
-format = '[ $symbol (\[$virtualenv\]) ]($style)'
+format = '[(\[$virtualenv\])]($style)'
 
 [rust]
 symbol = ""
