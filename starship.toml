@@ -1,13 +1,12 @@
 format = """
 [](#3B4252)\
-$python\
 $username\
 [](bg:#434C5E fg:#3B4252)\
 $directory\
-[](fg:#434C5E bg:#4C566A)\
+[](fg:#434C5E bg:#81a1c1)\
 $git_branch\
 $git_status\
-[](fg:#4C566A bg:#d8dee9)\
+[](fg:#81a1c1 bg:#5e81ac)\
 $c\
 $elixir\
 $elm\
@@ -18,15 +17,12 @@ $julia\
 $nim\
 $python\
 $rust\
-[](fg:#d8dee9 bg:#8fbcbb)\
+[](fg:#5e81ac bg:#a3be8c)\
 $docker_context\
-[](fg:#8fbcbb bg:#2e3440)\
+[](fg:#a3be8c bg:#4C566A)\
 $time\
-[ ](fg:#2e3440)\
+[ ](fg:#4C566A)\
 """
-command_timeout = 5000
-# Disable the blank line at the start of the prompt
-# add_newline = false
 
 # You can also replace your username with a neat symbol like  to save some space
 [username]
@@ -48,11 +44,6 @@ truncation_symbol = "…/"
 "Downloads" = " "
 "Music" = " "
 "Pictures" = " "
-# Keep in mind that the order matters. For example:
-# "Important Documents" = "  "
-# will not be replaced, because "Documents" was already substituted before.
-# So either put "Important Documents" before "Documents" or use the substituted version:
-# "Important  " = "  "
 
 [c]
 symbol = " "
@@ -76,11 +67,11 @@ format = '[ $symbol ($version) ]($style)'
 
 [git_branch]
 symbol = ""
-style = "bg:#4C566A"
+style = "bg:#81a1c1"
 format = '[ $symbol $branch ]($style)'
 
 [git_status]
-style = "bg:#4C566A"
+style = "bg:#81a1c1"
 format = '[$all_status$ahead_behind ]($style)'
 
 [golang]
@@ -109,14 +100,14 @@ style = "bg:#86BBD8"
 format = '[ $symbol ($version) ]($style)'
 
 [nim]
-symbol = " "
+symbol = ""
 style = "bg:#86BBD8"
 format = '[ $symbol ($version) ]($style)'
 
 [python]
 symbol = ""
-style = "bg:#3B4252"
-format = '[(\($virtualenv\) )]($style)'
+style = "bg:#5e81ac"
+format = '[ $symbol (\[$virtualenv\]) ]($style)'
 
 [rust]
 symbol = ""
@@ -126,6 +117,5 @@ format = '[ $symbol ($version) ]($style)'
 [time]
 disabled = false
 time_format = "%R" # Hour:Minute Format
-style = "bg:#2e3440"
+style = "bg:#4C566A"
 format = '[ $time ]($style)'
-
